@@ -11,6 +11,7 @@ import {
   Calendar,
   Weather,
   PasswordGenerator,
+  Kanban,
   Login,
   Signup,
 } from "./features/index.js";
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
           {
             path: "password-generator",
             element: <PasswordGenerator />,
+          },
+          {
+            path: "kanban",
+            element: <Kanban />,
           },
         ],
       },

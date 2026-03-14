@@ -24,7 +24,7 @@ const MainLayout = () => {
     <div className="relative flex h-screen overflow-hidden bg-background">
       <button
         className="absolute top-3 left-6 z-10 outline-none bg-primary text-primary-foreground font-mono font-bold text-xl px-8 py-3 capitalize rounded-r-2xl active:scale-95 -translate-x-30 hover:-translate-x-7 transition-all duration-200 shadow-lg glow-text"
-        onClick={() => setWidth(500)}
+        onClick={() => setWidth(300)}
       >
         reset
       </button>

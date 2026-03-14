@@ -45,6 +45,11 @@ const Aside = ({ width }) => {
       href: "/password-generator",
       logo: <i className="ri-key-2-line"></i>,
     },
+    {
+      Name: "Kanban",
+      href: "/kanban",
+      logo: <i class="ri-kanban-view-2"></i>,
+    },
   ];
 
   const baseCss =
@@ -56,6 +61,16 @@ const Aside = ({ width }) => {
         className="relative bg-background text-foreground flex flex-col items-center  w-full rounded-br-3xl rounded-tr-3xl overflow-hidden border-r border-border"
         style={{ width: `${width}px` }}
       >
+        {/* Brand Header */}
+        <div className="w-full px-4 pt-5 pb-4 border-b border-border flex flex-col items-center gap-y-0.5">
+          <span className="text-2xl font-extrabold tracking-tight text-foreground select-none">
+            Devium
+          </span>
+          <span className="text-[10px] font-medium tracking-widest uppercase text-muted-foreground select-none">
+            Build, Connect, Create
+          </span>
+        </div>
+
         <div className="p-6 flex flex-col items-center gap-y-4 border-b border-border w-full mb-4">
           <img
             src={
@@ -80,8 +95,8 @@ const Aside = ({ width }) => {
           </div>
         </div>
 
-        <div className="p-4 text-sm">
-          <ul className="flex flex-col items-center  w-full gap-y-4 mt-8 select-none">
+        <div className="flex-1 p-4 text-sm">
+          <ul className="flex flex-col items-center  w-full gap-y-4 mt-3 select-none">
             {navLinks.map((link, i) => (
               <NavLink
                 key={i}
@@ -96,7 +111,7 @@ const Aside = ({ width }) => {
             ))}
           </ul>
         </div>
-        <div className="mt-auto py-5 w-full bg-destructive/10 hover:bg-destructive/20 border-t border-border transition-all text-destructive font-bold">
+        <div className="shrink-0 py-5 w-full bg-destructive/10 hover:bg-destructive/20 border-t border-border transition-all text-destructive font-bold">
           <button
             onClick={handleLogout}
             className="w-full h-full flex items-center justify-center gap-2"
