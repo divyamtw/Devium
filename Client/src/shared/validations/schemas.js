@@ -8,18 +8,6 @@ const loginSchema = z.object({
 });
 
 const registerSchema = z.object({
-  firstname: z
-    .string()
-    .min(3, {
-      message: "First Name should be atleast 3 characters long.",
-    })
-    .max(20),
-  lastname: z
-    .string()
-    .min(3, {
-      message: "Last Name should be atleast 3 characters long.",
-    })
-    .max(20),
   username: z.string().min(3, { message: "Username must be unique." }),
   email: z.email({ message: "Enter valid email." }),
   password: z

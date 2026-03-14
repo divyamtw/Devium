@@ -1,6 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Aside = ({ width }) => {
+  const { user } = useSelector((state) => state.auth);
   const navLinks = [
     {
       Name: "Dashboard",
@@ -43,8 +45,26 @@ const Aside = ({ width }) => {
         className="relative bg-zinc-900 text-white flex flex-col items-center  w-full rounded-br-3xl rounded-tr-3xl overflow-hidden"
         style={{ width: `${width}px` }}
       >
-        <div className="p-4 font-semibold border-b border-zinc-800 ">
-          <img src="/temp/temp_user.jpg" alt="" className="w-60 rounded-[50%]" />
+        <div className="p-6 flex flex-col items-center gap-y-4 border-b border-zinc-800 w-full mb-4">
+          <img
+            src={user?.profileImg || "https://ik.imagekit.io/cd0pgs18s/default.jpg"}
+            alt="User profile"
+            className="w-40 h-40 object-cover rounded-full border-2 border-zinc-700 shadow-xl"
+          />
+          <div className="flex flex-col items-center gap-y-2">
+            <span className="text-xl font-bold text-white capitalize">
+              {user?.username || "Guest"}
+            </span>
+            <NavLink
+              to="/profile"
+              className={({ isActive }) =>
+                `${baseCss} ${isActive ? "bg-zinc-600 border-none" : "bg-transparent border-zinc-700"}`
+              }
+            >
+              <i className="ri-user-settings-line mr-1 text-sm"></i>
+              View Profile
+            </NavLink>
+          </div>
         </div>
 
         <div className="p-4 text-sm text-zinc-300">

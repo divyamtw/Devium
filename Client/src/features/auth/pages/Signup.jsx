@@ -1,38 +1,38 @@
-import React, {useState} from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../services/auth.api";
+import { clearError } from "../auth.slice";
+import useZodForm from "../../../shared/hooks/useZodForm";
+import { registerSchema } from "../../../shared/validations/schemas";
+import { useNavigate, Link } from 'react-router-dom';
 
 const Signup = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { isLoading, error, isAuthenticated } = useSelector((state) => state.auth);
 
-    const [firstname, setFirstname] = useState(``)
-    const [lastname, setLastname] = useState(``)
-    const [email, setEmail] = useState(``)
-    const [password, setPassword] = useState(``)
-    const [error, setError] = useState(``)
-    const [loading, setLoading] = useState(false)
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useZodForm(registerSchema, { username: "", email: "", password: "" });
 
-    const submitHandler = (e) => {
-        e.preventDefault()
-        setError("");
-
-        if (!firstname || !lastname || !email || !password) {
-            setError("All fields are required");
-            return;
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/"); // redirect on login
         }
+    }, [isAuthenticated, navigate]);
 
-        setLoading(true);
+    useEffect(() => {
+        return () => { dispatch(clearError()); };
+    }, [dispatch]);
 
-        try {
-            //TODO: Auth Api call -> create user and login him
-
-            setFirstname(``)
-            setLastname(``)
-            setEmail(``)
-            setPassword(``)
-        } catch {
-            setError("Something went wrong")
-        } finally {
-            setLoading(false)
+    const submitHandler = handleSubmit(async (data) => {
+        const result = await dispatch(registerUser(data));
+        if (registerUser.fulfilled.match(result)) {
+            navigate("/login");
         }
-    }
+    });
 
     return (
         <div
@@ -50,55 +50,35 @@ const Signup = () => {
                 className="flex flex-col w-full gap-y-2 mt-2"
                 onSubmit={submitHandler}>
 
-                <div className="flex w-full gap-x-2">
-                    <input
-                        required
-                        type="text"
-                        placeholder="First name"
-                        value={firstname}
-                        onChange={(e) => {
-                            setFirstname(e.target.value)
-                            if (error) setError("");
-                        }}
-                        className="w-1/2 bg-input text-foreground border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                    />
-
-                    <input
-                        required
-                        type="text"
-                        placeholder="Last name"
-                        value={lastname}
-                        onChange={(e) => {
-                            setLastname(e.target.value)
-                            if (error) setError("");
-                        }}
-                        className="w-1/2 bg-input text-foreground border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                    />
-                </div>
+                <input
+                    {...register("username")}
+                    type="text"
+                    placeholder="Username"
+                    className="w-full bg-input text-foreground border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+                {errors.username && (
+                    <p className="text-sm text-destructive px-1">{errors.username.message}</p>
+                )}
 
                 <input
-                    required
+                    {...register("email")}
                     type="email"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => {
-                        setEmail(e.target.value)
-                        if (error) setError("");
-                    }}
                     className="w-full bg-input text-foreground border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
+                {errors.email && (
+                    <p className="text-sm text-destructive px-1">{errors.email.message}</p>
+                )}
 
                 <input
-                    required
+                    {...register("password")}
                     type="password"
                     placeholder="Password"
-                    value={password}
-                    onChange={(e) => {
-                        setPassword(e.target.value)
-                        if (error) setError("");
-                    }}
                     className="w-full bg-input text-foreground border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
+                {errors.password && (
+                    <p className="text-sm text-destructive px-1">{errors.password.message}</p>
+                )}
 
                 {error && (
                     <p className="text-sm text-destructive text-center">
@@ -108,13 +88,20 @@ const Signup = () => {
 
                 <button
                     type="submit"
-                    disabled={loading}
-                    className="w-full bg-primary text-primary-foreground rounded-xl py-2 mt-1 font-medium text-sm transition-all hover:opacity-90 active:scale-[0.98]"
+                    disabled={isLoading}
+                    className="w-full bg-primary text-primary-foreground rounded-xl py-2 mt-1 font-medium text-sm transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100"
                 >
-                    {loading ? "Creating account..." : "Sign Up"}
+                    {isLoading ? "Creating account..." : "Sign Up"}
                 </button>
 
             </form>
+
+            <Link
+                to="/login"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+                Already have an account? Sign in
+            </Link>
         </div>
     );
 
