@@ -9,7 +9,7 @@ const Aside = ({ width }) => {
   const handleLogout = () => {
     dispatch(logoutUser());
   };
-  const navLinks = [
+  const featuresList = [
     {
       Name: "Dashboard",
       href: "/",
@@ -48,12 +48,12 @@ const Aside = ({ width }) => {
     {
       Name: "Kanban",
       href: "/kanban",
-      logo: <i class="ri-kanban-view-2"></i>,
+      logo: <i className="ri-kanban-view-2"></i>,
     },
   ];
 
   const baseCss =
-    "min-h-10 w-52 py-2 flex items-center justify-center active:scale-105 scale-110 active:transition-all duration-50 font-semibold rounded-full border transition-colors";
+    "min-h-10 w-52 py-2 flex items-center justify-center active:scale-105 scale-110 active:transition-all duration-50 font-semibold rounded-full border transition-colors select-none";
 
   return (
     <div className="h-screen flex">
@@ -96,22 +96,22 @@ const Aside = ({ width }) => {
         </div>
 
         <div className="flex-1 p-4 text-sm">
-          <ul className="flex flex-col items-center  w-full gap-y-4 mt-3 select-none">
-            {navLinks.map((link, i) => (
+          <ul className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 w-full mt-3">
+            {featuresList.map((feature, i) => (
               <NavLink
                 key={i}
-                to={link.href}
+                to={feature.href}
                 className={({ isActive }) =>
                   `${baseCss} ${isActive ? "bg-primary text-primary-foreground border-none" : "bg-transparent text-muted-foreground hover:text-foreground border-border/50"}`
                 }
               >
-                <span className="mr-1">{link.logo}</span>
-                {link.Name}
+                <span className="mr-1">{feature.logo}</span>
+                {feature.Name}
               </NavLink>
             ))}
           </ul>
         </div>
-        <div className="shrink-0 py-5 w-full bg-destructive/10 hover:bg-destructive/20 border-t border-border transition-all text-destructive font-bold">
+        <div className="shrink-0 py-5 w-full bg-destructive/10 hover:bg-destructive/20 border-t border-border transition-all text-destructive font-bold select-none">
           <button
             onClick={handleLogout}
             className="w-full h-full flex items-center justify-center gap-2"

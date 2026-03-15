@@ -39,7 +39,12 @@ const Login = () => {
 
   return (
     <div className="max-w-md w-full bg-card text-card-foreground border border-border rounded-2xl px-6 py-5 flex flex-col items-center gap-y-2 shadow-lg">
-      <h1 className="text-4xl font-bold tracking-tight">root_</h1>
+      <div className="flex flex-col items-center gap-y-0.5 mb-1">
+        <h1 className="text-4xl font-extrabold tracking-tight">Devium</h1>
+        <span className="text-[10px] font-medium tracking-widest uppercase text-muted-foreground select-none">
+          Build, Connect, Create
+        </span>
+      </div>
 
       <h2 className="text-2xl font-semibold">Welcome back</h2>
 
