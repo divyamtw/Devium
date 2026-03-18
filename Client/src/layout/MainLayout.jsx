@@ -3,6 +3,7 @@ import MainContent from "./MainContent.jsx";
 import useResizable from "../hooks/useResizable.js";
 import { useEffect } from "react";
 import { SIDEBAR_WIDTH_KEY } from "../constants.js";
+import GlobalToolSearchModal from "../features/dashboard/components/ToolSearch/GlobalToolSearchModal.jsx";
 
 const getInitialWidth = () => {
   const saved = localStorage.getItem(SIDEBAR_WIDTH_KEY);
@@ -22,6 +23,7 @@ const MainLayout = () => {
 
   return (
     <div className="relative flex h-screen overflow-hidden bg-background">
+      <GlobalToolSearchModal />
       <button
         className="absolute top-3 left-6 z-10 outline-none bg-primary text-primary-foreground font-mono font-bold text-xl px-8 py-3 capitalize rounded-r-2xl active:scale-95 -translate-x-30 hover:-translate-x-7 transition-all duration-200 shadow-lg glow-text"
         onClick={() => setWidth(300)}

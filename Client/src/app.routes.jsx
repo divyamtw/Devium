@@ -16,6 +16,7 @@ import {
   Kanban,
   Login,
   Signup,
+  Chat
 } from "./features/index.js";
 import Profile from "./layout/Profile.jsx";
 
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
           {
             path: "kanban",
             element: <Kanban />,
+          },
+          {
+            path: "chat",
+            element: <Chat />,
           },
         ],
       },

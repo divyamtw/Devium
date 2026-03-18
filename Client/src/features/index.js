@@ -8,6 +8,7 @@ import Calendar from "./calendar/Calendar.jsx";
 import Weather from "./weather/Weather.jsx";
 import PasswordGenerator from "./password-generator/PasswordGenerator.jsx";
 import Kanban from "./Kanban/Kanban.jsx";
+import Chat from "./chat/chat.jsx";
 import { Login, Signup } from "./auth/pages/index.js";
 
 export {
@@ -23,4 +24,5 @@ export {
   Kanban,
   Login,
   Signup,
+  Chat,
 };
