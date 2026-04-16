@@ -90,8 +90,8 @@ export const featuresList = [
     ),
   },
   {
-    name: "Password Gen",
-    href: "/password-generator",
+    name: "Random String",
+    href: "/random-string-generator",
     logo: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

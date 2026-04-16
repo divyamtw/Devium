@@ -12,11 +12,11 @@ import {
   Task,
   Calendar,
   Weather,
-  PasswordGenerator,
+  RandomStringGenerator,
   Kanban,
   Login,
   Signup,
-  Chat
+  Chat,
 } from "./features/index.js";
 import Profile from "./layout/Profile.jsx";
 
@@ -89,8 +89,8 @@ const router = createBrowserRouter([
             element: <Weather />,
           },
           {
-            path: "password-generator",
-            element: <PasswordGenerator />,
+            path: "random-string-generator",
+            element: <RandomStringGenerator />,
           },
           {
             path: "kanban",

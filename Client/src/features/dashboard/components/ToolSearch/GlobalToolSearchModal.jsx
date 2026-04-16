@@ -60,7 +60,7 @@ const GlobalToolSearchModal = () => {
                 <button
                   onClick={() => handleSelect(tool.href)}
                   onMouseEnter={() => setSelectedIndex(index)}
-                  className={`w-full flex items-center gap-4 px-3 py-3 text-sm transition-colors text-left rounded-xl pointer-events-auto cursor-pointer ${
+                  className={`w-full flex items-center gap-4 px-3 py-3 text-sm transition-none text-left rounded-xl pointer-events-auto cursor-pointer ${
                     selectedIndex === index
                       ? "bg-accent text-accent-foreground"
                       : "hover:bg-accent hover:text-accent-foreground text-foreground"

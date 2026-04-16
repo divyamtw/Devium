@@ -6,7 +6,7 @@ import Pomodoro from "./pomodoro/Pomodoro.jsx";
 import Task from "./tasks/Task.jsx";
 import Calendar from "./calendar/Calendar.jsx";
 import Weather from "./weather/Weather.jsx";
-import PasswordGenerator from "./password-generator/PasswordGenerator.jsx";
+import RandomStringGenerator from "./random-string-generator/RandomStringGenerator.jsx";
 import Kanban from "./Kanban/Kanban.jsx";
 import Chat from "./chat/chat.jsx";
 import { Login, Signup } from "./auth/pages/index.js";
@@ -20,7 +20,7 @@ export {
   Task,
   Calendar,
   Weather,
-  PasswordGenerator,
+  RandomStringGenerator,
   Kanban,
   Login,
   Signup,

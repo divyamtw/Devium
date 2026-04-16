@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { featuresList } from "../../featuresList.jsx";
 import { useNavigate } from "react-router-dom";
 
-export const openToolbox = () => window.dispatchEvent(new Event("open-toolbox"));
+export const openToolbox = () =>
+  window.dispatchEvent(new Event("open-toolbox"));
 
 export default function useToolSearch() {
   const [query, setQuery] = useState("");
@@ -26,7 +27,10 @@ export default function useToolSearch() {
     };
 
     const handler = (e) => {
-      if ((e.metaKey || e.ctrlKey) && (e.key.toLowerCase() === "k" || e.code === "KeyK")) {
+      if (
+        (e.metaKey || e.ctrlKey) &&
+        (e.key.toLowerCase() === "k" || e.code === "KeyK")
+      ) {
         e.preventDefault();
         e.stopPropagation();
         handleOpen();
